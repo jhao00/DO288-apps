@@ -1,0 +1,21 @@
+net_api: netconf
+net_gather_network_resources:
+- interfaces
+net_gather_subset:
+- default
+net_hostname: junos2.lab.example.com
+net_model: vmx
+net_python_version: 3.9.13
+net_serialnum: VM646556090A
+net_system: junos
+net_version: 23.1R1.8
+network_resources:
+    interfaces:
+    -   enabled: true
+        name: em1
+        units:
+        -   name: 0
+    -   enabled: true
+        name: fxp0
+        units:
+        -   name: 0

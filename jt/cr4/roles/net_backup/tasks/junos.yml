@@ -1,0 +1,14 @@
+---
+- name: Enable the netconf service on port 830
+  vars:
+    ansible_connection: ansible.netcommon.network_cli
+  junipernetworks.junos.junos_netconf:
+    netconf_port: 830
+    state: present
+
+- name: Back up Junos configurations
+  junipernetworks.junos.junos_config:
+    backup: true
+    backup_options:
+      dir_path: "{{ backup_tmp }}"
+      filename: "{{ inventory_hostname }}.cfg"

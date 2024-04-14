@@ -1,0 +1,16 @@
+---
+- name: Create the backup store directory
+  ansible.builtin.file:
+    path: "{{ backup_store }}"
+    state: directory
+    recurse: true
+  become: true
+  delegate_to: "{{ delegate_host }}"
+
+- name: Store the latest backup files
+  ansible.builtin.copy:
+    src: "{{ backup_tmp }}/{{ inventory_hostname }}.cfg"
+    dest: "{{ backup_store }}"
+    mode: "0664"
+  become: true
+  delegate_to: "{{ delegate_host }}"

@@ -1,0 +1,12 @@
+{# loop through each name server #}
+{% for NAMESERVER in nameservers %}
+set system name-server {{ NAMESERVER }}
+{% endfor %}
+{# loop through each syslog server #}
+{% for SYSLOG in syslog_servers %}
+set system syslog host {{ SYSLOG['name'] }} source-address {{ SYSLOG['address'] }}
+{% endfor %}
+{# loop through each ntp server #}
+{% for NTP in ntp_servers %}
+set system ntp server {{ NTP }}
+{% endfor %}

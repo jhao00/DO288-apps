@@ -1,0 +1,11 @@
+---
+- name: Gather IOS facts
+  cisco.ios.ios_facts:
+    gather_network_resources:
+      - interfaces
+
+- name: Save facts to file
+  ansible.builtin.copy:
+    content: "{{ ansible_facts | to_nice_yaml }}"
+    dest: "{{ inventory_hostname }}.txt"
+    mode: "0644"

@@ -1,0 +1,19 @@
+---
+interfaces:
+  junos1.lab.example.com:
+    - name: em1
+      unit_name: 0
+      unit_description: Managed by Ansible
+
+    - name: fxp0
+      unit_name: 0
+      unit_description: Managed by Ansible
+
+  junos2.lab.example.com:
+    - name: em1
+      unit_name: 0
+      unit_description: Managed by Ansible
+
+    - name: fxp0
+      unit_name: 0
+      unit_description: Managed by Ansible
