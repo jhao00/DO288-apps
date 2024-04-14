@@ -1,0 +1,9 @@
+- name: test playbook_dir
+  hosts: ios
+  gather_facts: no
+  become: no
+
+  tasks:
+    - name: debug
+      ansible.builtin.debug:
+        var: playbook_dir
