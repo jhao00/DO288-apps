@@ -1,0 +1,16 @@
+- name: Enable junos netconf
+  vars:
+    ansible_connection: ansible.netcommon.network_cli
+  junipernetworks.junos.junos_netconf:
+    netconf_port: 830
+    state: present
+
+- name: Gahter Junos facts
+  junipernetworks.junos.junos_facts:
+     gather_network_resources: 
+     - interfaces
+
+- name: Save facts to {{ inventory_hostname }}.txt
+  ansible.builtin.copy:
+    content: "{{ ansible_facts['network_resources']['interfaces'] | to_nice_yaml }}"
+    dest: "{{ inventory_hostname }}.txt"

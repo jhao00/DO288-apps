@@ -1,0 +1,25 @@
+- name: Add interfaces
+  hosts: ios,junos
+  gather_facts: no
+  become: no
+
+  tasks:
+    - name: gather facts using network.base.resource_manager
+      ansible.builtin.include_role:
+        name: network.base.resource_manager
+      vars:
+        action: gather
+        resources:
+          - interfaces
+
+    - name: Gather facts
+      ansible.builtin.include_tasks: "tasks/{{ ansible_network_os }}.yml"
+
+    - name: Add interfaces
+      ansible.builtin.include_tasks: "tasks/{{ ansible_network_os }}_interface.yml"
+
+    - name: verify changes
+      vars:
+        ansible_connection: ansible.netcommon.network_cli
+      ansible.netcommon.cli_command:
+        command: "{{ show_interfaces }}"

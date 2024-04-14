@@ -1,0 +1,10 @@
+-   enabled: true
+    name: em1
+    units:
+    -   description: Managed by Ansible
+        name: 0
+-   enabled: true
+    name: fxp0
+    units:
+    -   description: Managed by Ansible
+        name: 0

@@ -1,0 +1,9 @@
+- name: Gather ios facts
+  cisco.ios.ios_facts:
+    gather_network_resources:
+      - interfaces
+
+- name: Save facts to {{ inventory_hostname }}.txt
+  ansible.builtin.copy:
+    content: "{{ ansible_facts['network_resources']['interfaces'] | to_nice_yaml }}"
+    dest: "{{ inventory_hostname }}.txt"
