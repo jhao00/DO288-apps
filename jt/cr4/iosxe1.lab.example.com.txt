@@ -3,13 +3,13 @@ net_gather_network_resources:
 - interfaces
 net_gather_subset:
 - default
-net_hostname: iosxe1.lab.example.com
+net_hostname: Router
 net_image: bootflash:packages.conf
 net_iostype: IOS-XE
 net_model: C8000V
 net_operatingmode: autonomous
 net_python_version: 3.9.13
-net_serialnum: 9SWLYLO7SD3
+net_serialnum: 9WYDT5OYBQF
 net_system: ios
 net_version: 17.06.02
 network_resources:
