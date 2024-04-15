@@ -1,0 +1,13 @@
+- name: Enable Junos netconf
+  vars:
+    ansible_connection: ansible.netcommon.network_cli
+  junipernetworks.junos.junos_netconf:
+    netconf_port: 830
+    state: present
+
+- name: Create backups
+  junipernetworks.junos.junos_config:
+    backup: True
+    backup_options:
+      dir_path: "{{ backup_tmp }}"
+      filename: "{{ inventory_hostname }}.cfg"

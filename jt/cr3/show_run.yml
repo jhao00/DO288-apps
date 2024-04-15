@@ -1,0 +1,208 @@
+---
+- name: Set facts for IOS running configuration
+  hosts: ios
+  gather_facts: false
+  tasks:
+    - name: Gather config facts
+      cisco.ios.ios_facts:
+        gather_subset:
+          - config
+
+    - name: Set ntp_server_lines
+      vars:
+        ntp_pattern: "^ntp server .* version 2$"
+      ansible.builtin.set_fact:
+        ntp_server_lines: >-
+          {{ ansible_facts['net_config'] |
+          regex_findall(ntp_pattern, multiline=true) }}
+
+    - name: Set actual_ntp_servers
+      vars:
+        ntp_start: "ntp server "
+        ntp_end: " version 2"
+      ansible.builtin.set_fact:
+        actual_ntp_servers: >-
+          {{ ntp_server_lines |
+          regex_replace(ntp_start) |
+          regex_replace(ntp_end) }}
+
+    - name: Set syslog_server_lines
+      vars:
+        syslog_pattern: "^logging host .*$"
+      ansible.builtin.set_fact:
+        syslog_server_lines: >-
+          {{ ansible_facts['net_config'] |
+          regex_findall(syslog_pattern, multiline=true) }}
+
+    - name: Set actual_syslog_servers
+      vars:
+        syslog_start: "logging host "
+      ansible.builtin.set_fact:
+        actual_syslog_servers: >-
+          {{ syslog_server_lines | regex_replace(syslog_start) }}
+
+    - name: Set dns_server_lines
+      vars:
+        dns_pattern: "^ip name-server .*$"
+      ansible.builtin.set_fact:
+        dns_server_lines: >-
+          {{ ansible_facts['net_config'] |
+          regex_findall(dns_pattern, multiline=true) }}
+
+    - name: Set actual_dns_servers
+      vars:
+        dns_start: "ip name-server "
+        space_split: " "
+      ansible.builtin.set_fact:
+        actual_dns_servers: >-
+          {{ dns_server_lines |
+          first |
+          regex_replace(dns_start) |
+          split(space_split) }}
+
+- name: Set facts for Junos running configuration
+  hosts: junos
+  gather_facts: false
+  tasks:
+    - name: Enable NETCONF
+      vars:
+        ansible_connection: ansible.netcommon.network_cli
+      junipernetworks.junos.junos_netconf:
+
+    - name: Gather minimal facts
+      junipernetworks.junos.junos_facts:
+        gather_subset:
+          - min
+
+    - name: Create a temporary directory for backup files
+      ansible.builtin.tempfile:
+        prefix: temp_backup
+        state: directory
+      register: temp_backup
+
+    - name: Set temp_path
+      ansible.builtin.set_fact:
+        temp_path: "{{ temp_backup['path'] }}"
+
+    - name: Create the '{{ temp_path }}' directory
+      ansible.builtin.file:
+        path: "{{ temp_path }}"
+        state: directory
+
+    - name: Create backup in JSON format
+      junipernetworks.junos.junos_config:
+        backup: true
+        backup_options:
+          backup_format: json
+          dir_path: "{{ temp_path }}"
+          filename: "{{ inventory_hostname }}.json"
+      register: create_backup
+
+    - name: Slurp backup file
+      ansible.builtin.slurp:
+        src: "{{ create_backup['backup_path'] }}"
+      register: slurped_file
+
+    - name: Set json_content
+      ansible.builtin.set_fact:
+        json_content: "{{ slurped_file['content'] | b64decode | from_json }}"
+
+    - name: Set system_configuration
+      ansible.builtin.set_fact:
+        system_configuration: "{{ json_content['configuration']['system'] }}"
+
+    - name: Set actual_ntp_servers
+      when:
+        - system_configuration is defined
+        - system_configuration['ntp'] is defined
+        - system_configuration['ntp']['server'] is defined
+      ansible.builtin.set_fact:
+        actual_ntp_servers: >-
+          {{ system_configuration['ntp']['server'] |
+          map(attribute='name') }}
+
+    - name: Set ntp_error
+      when: actual_ntp_servers is not defined
+      ansible.builtin.set_fact:
+        ntp_error: >-
+          NTP server settings
+          are not defined for the
+          '{{ ansible_facts["net_hostname"] | default(inventory_hostname) }}'
+          managed node.
+
+    - name: Update actual_ntp_servers
+      when: ntp_error is defined
+      ansible.builtin.set_fact:
+        actual_ntp_servers: "{{ ntp_error }}"
+
+    - name: Set actual_syslog_servers
+      when:
+        - system_configuration is defined
+        - system_configuration['syslog'] is defined
+        - system_configuration['syslog']['host'] is defined
+      vars:
+        syslog_start: "logging host "
+      ansible.builtin.set_fact:
+        actual_syslog_servers: >-
+          {{ system_configuration['syslog']['host'] }}
+
+    - name: Set syslog_error
+      when: actual_syslog_servers is not defined
+      ansible.builtin.set_fact:
+        syslog_error: >-
+          Syslog server settings
+          are not defined for the
+          '{{ ansible_facts["net_hostname"] | default(inventory_hostname) }}'
+          managed node.
+
+    - name: Update actual_syslog_servers
+      when: syslog_error is defined
+      ansible.builtin.set_fact:
+        actual_syslog_servers: "{{ syslog_error }}"
+
+    - name: Set actual_dns_servers
+      when:
+        - system_configuration is defined
+        - system_configuration['name-server'] is defined
+      ansible.builtin.set_fact:
+        actual_dns_servers: >-
+          {{ system_configuration['name-server'] |
+          map(attribute='name') }}
+
+    - name: Set dns_error
+      when: actual_dns_servers is not defined
+      ansible.builtin.set_fact:
+        dns_error: >-
+          DNS server settings
+          are not defined for the
+          '{{ ansible_facts["net_hostname"] | default(inventory_hostname) }}'
+          managed node.
+
+    - name: Update actual_dns_servers
+      when: dns_error is defined
+      ansible.builtin.set_fact:
+        actual_dns_servers: "{{ dns_error }}"
+
+    - name: Remove temporary directory
+      ansible.builtin.file:
+        path: "{{ temp_path }}"
+        state: absent
+
+- name: Display configuration
+  hosts:
+    - ios
+    - junos
+  become: false
+  gather_facts: false
+  tasks:
+    - name: Display configured NTP servers
+      ansible.builtin.debug:
+        var: actual_ntp_servers
+
+    - name: Display configured DNS name servers
+      ansible.builtin.debug:
+        var: actual_dns_servers
+
+    - name: Display configured Syslog servers
+      ansible.builtin.debug:
+        var: actual_syslog_servers

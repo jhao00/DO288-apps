@@ -1,0 +1,7 @@
+- name: Backup ios config
+  cisco.ios.ios_config:
+    backup: true
+    backup_options:
+      dir_path: "{{ backup_tmp }}"
+      filename: "{{ inventory_hostname }}.cfg"
+

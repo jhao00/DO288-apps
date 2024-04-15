@@ -1,0 +1,8 @@
+---
+# tasks file for net_backup
+- name: Backup junos, ios configs
+  ansible.builtin.include_tasks: "{{ ansible_network_os.split('.')[2] }}.yml"
+
+- name: Store backups on {{ delegate_host }}
+  ansible.builtin.include_tasks: 
+    file: store_backups.yml

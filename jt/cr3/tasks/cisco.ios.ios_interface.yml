@@ -1,0 +1,8 @@
+---
+- name: Configure interface descriptions on IOS
+  cisco.ios.ios_interfaces:
+    config:
+      - name: "{{ item['name'] }}"
+        description: "{{ item['description'] }}"
+    state: merged
+  loop: "{{ interfaces[inventory_hostname] }}"

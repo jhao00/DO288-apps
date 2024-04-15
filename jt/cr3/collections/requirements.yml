@@ -1,0 +1,11 @@
+---
+collections:
+  - name: network.base
+    version: 2.0.0
+    source: https://hub.lab.example.com/api/galaxy/content/validated/
+  - name: ansible.netcommon
+    version: 4.1.0
+    source: https://hub.lab.example.com/api/galaxy/content/rh-certified/
+  - name: ansible.utils
+    version: 2.7.0
+    source: https://hub.lab.example.com/api/galaxy/content/rh-certified/

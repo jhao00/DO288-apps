@@ -1,0 +1,17 @@
+- name: Create backup_store
+  become: yes
+  ansible.builtin.file:
+    path: "{{ backup_store }}"
+    state: directory
+  run_once: yes
+  delegate_to: "{{ delegate_host }}"
+
+- name: Copy backup files
+  become: yes
+  ansible.builtin.copy:
+    src: "{{ backup_tmp }}/{{ inventory_hostname }}.cfg"
+    dest: "{{ backup_store }}"
+    mode: "0644"
+  delegate_to: "{{ delegate_host }}"
+
+
