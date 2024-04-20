@@ -1,0 +1,6 @@
+interfaces:
+  - name: GigabitEthernet1
+    description: "test1"
+
+  - name: GigabitEthernet2
+    description: "test2"

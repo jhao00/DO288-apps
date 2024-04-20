@@ -1,0 +1,23 @@
+- name: Configure snmp
+  hosts: test
+  gather_facts: no
+  become: yes
+
+  tasks:
+    - name: Enable netconf on junos
+      when: ansible_network_os == "junipernetworks.junos.junos"
+      ansible.builtin.include_tasks: tasks/netconf_junos.yml
+
+    - name: get netcomon resource
+      ansible.netcommon.network_resource:
+      register: out
+
+    - name: debug
+      ansible.builtin.debug:
+        var: out
+
+    - name: Configure snmp
+      ansible.netcommon.network_resource:
+        name: snmp_server
+        state: merged
+        config: "{{ snmp_config }}"

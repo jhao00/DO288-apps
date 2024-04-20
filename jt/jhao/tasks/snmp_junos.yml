@@ -1,0 +1,4 @@
+- name: Configure snmp ios
+  junipernetworks.junos.junos_snmp_server:
+    state: merged
+    config: "{{ snmp_config }}"

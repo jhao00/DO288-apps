@@ -1,0 +1,19 @@
+- name: Verify changes
+  hosts: test
+  gather_facts: no
+  become: yes
+
+  tasks:
+    - name: verify snmp ios
+      vars:
+        action: "^ip .*$"
+      when: ansible_network_os == "cisco.ios.ios"
+      ansible.builtin.include_tasks: tasks/verify_facts_ios.yml
+
+    - name: verify snmp junos
+      vars:
+        action: interface
+      when: ansible_network_os == "junipernetworks.junos.junos"
+      ansible.builtin.include_tasks: tasks/verify_facts_junos.yml
+
+

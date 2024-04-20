@@ -1,0 +1,9 @@
+- name: Verify changes
+  hosts: test
+  gather_facts: no
+  become: yes
+
+  tasks:
+    - name: verify interface ios
+      when: ansible_network_os == "cisco.ios.ios"
+      ansible.builtin.include_tasks: tasks/verify_facts_ios.yml

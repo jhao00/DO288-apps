@@ -1,0 +1,15 @@
+- name: gather facts subset
+  hosts: ios,junos
+  gather_facts: no
+  become: no
+
+  vars:
+    filename: "{{ inventory_hostname }}_before_snmp.txt"
+  tasks:
+    - name: backup running-configs
+      vars:
+        ansible_connection: ansible.netcommon.network_cli
+      ansible.netcommon.cli_config:
+        backup: true
+        backup_options:
+          filename:  "{{ filename }}"

@@ -1,0 +1,4 @@
+- name: Configure snmp ios
+  cisco.ios.ios_snmp_server:
+    state: merged
+    config: "{{ snmp_config }}"
