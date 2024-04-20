@@ -1,0 +1,2 @@
+nsible-navigator exec -- ansible -i iosxe1.lab.example.com, -c ansible.netcommon.network_cli -e ansible_network_os=cisco.ios.ios all -m cisco.ios.ios_facts -a "gather_subset='all'" -u student  -e ansible_password=Student
+
