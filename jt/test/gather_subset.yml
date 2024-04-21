@@ -1,0 +1,20 @@
+- name: Verify changes
+  hosts: test
+  gather_facts: no
+  become: no
+
+  vars:
+    what: "config"
+
+  tasks:
+    - name: Gather subset ios
+      when: ansible_network_os == "cisco.ios.ios"
+      ansible.builtin.include_tasks: tasks/subset_ios.yml
+
+    - name: Ensure netconf port is open
+      when: ansible_network_os == "junipernetworks.junos.junos"
+      ansible.builtin.include_tasks: tasks/netconf_junos.yml
+
+    - name: Gather subset junos
+      when: ansible_network_os == "junipernetworks.junos.junos"
+      ansible.builtin.include_tasks: tasks/subset_junos.yml

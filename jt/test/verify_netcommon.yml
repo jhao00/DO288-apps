@@ -1,1 +1,16 @@
-- name: gather facts using 
+- name: gather facts using netcommon
+  hosts: test
+  gather_facts: no
+  become: no
+
+  tasks:
+  - name: gather facts using  netcommon
+    ansible.netcommon.network_resource:
+    register: out
+
+  - name: debug
+    debug:
+      var: out
+
+  - name: add task
+    ansible.builtin.include_tasks: tasks/verify_netcommon.yml

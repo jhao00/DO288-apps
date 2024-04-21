@@ -1,0 +1,13 @@
+ansible_connection: ansible.netcommon.network_cli
+ansible_network_os: cisco.ios.ios
+changed: false
+failed: false
+gathered:
+    communities:
+    -   name: rocommunity2n4g!
+        ro: true
+    -   name: rwcommunityd7g$v
+        rw: true
+    contact: Network Engineering | neteng@company.com
+    location: Raleigh, NC
+resource_module_name: cisco.ios.snmp_server

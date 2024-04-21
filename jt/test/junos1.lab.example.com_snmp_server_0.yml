@@ -1,0 +1,13 @@
+ansible_connection: ansible.netcommon.netconf
+ansible_network_os: junipernetworks.junos.junos
+changed: false
+failed: false
+gathered:
+    communities:
+    -   authorization: read-only
+        name: rocommunity2n4g!
+    -   authorization: read-write
+        name: rwcommunityd7g$v
+    contact: Network Engineering | neteng@company.com
+    location: Raleigh, NC
+resource_module_name: junipernetworks.junos.snmp_server

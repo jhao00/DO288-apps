@@ -1,0 +1,17 @@
+- name: Gather subset ios
+  cisco.ios.ios_facts:
+    gather_subset:
+      - "{{ what }}"
+
+- name: debug
+  vars:
+    sep: "\n"
+  debug:
+    var: ansible_facts['net_config'] | split(sep)
+
+- name: save facts to file
+  vars:
+    sep: "\n"
+  ansible.builtin.copy:
+    content: "{{ ansible_facts['net_config'] | split(sep) | to_nice_yaml }}"
+    dest: "{{ inventory_hostname }}_{{ what }}_all.yml"

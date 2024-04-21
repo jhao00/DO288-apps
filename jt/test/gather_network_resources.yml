@@ -1,0 +1,20 @@
+- name: Verify changes
+  hosts: test
+  gather_facts: no
+  become: no
+
+  tasks:
+    - name: Gather network_resources
+      ansible.netcommon.network_resource:
+        name: snmp_server
+        state: gathered
+      register: out
+
+    - name: debug
+      debug:
+        var: out
+
+    - name: save output
+      copy:
+        content: "{{ out | to_nice_yaml }}"
+        dest: "{{ inventory_hostname }}_snmp_server.yml"
