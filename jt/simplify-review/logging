@@ -1,0 +1,14 @@
+TASK [debug] ***************************************************************************************************
+ok: [iosxe1.lab.example.com] => {
+    "ansible_facts['net_config'] | regex_findall('log.*$', multiline=true)": [
+        "log datetime msec localtime show-timezone year",
+        "logging console",
+        "login on-success log",
+        "logging trap warnings",
+        "logging facility local5",
+        "logging host 192.168.10.10",
+        "logging host 192.168.11.10",
+        "login local"
+    ]
+}
+
