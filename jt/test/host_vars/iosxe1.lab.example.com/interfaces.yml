@@ -1,0 +1,9 @@
+interfaces:
+    iosxe1.lab.example.com:
+    - name: Loopback0
+      description: Managed by Ansible
+      enabled: true
+
+    - name: GigabitEthernet2
+      description: Managed by Ansible
+      enabled: true

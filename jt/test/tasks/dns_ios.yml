@@ -1,0 +1,8 @@
+- name: Configure dns on ios
+  cisco.ios.ios_system:
+     state: present
+     domain_search:
+          - lab.example.com
+     name_servers:
+          - 172.25.250.220
+

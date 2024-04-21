@@ -1,0 +1,257 @@
+{
+    "net_api": "netconf",
+    "net_gather_network_resources": [],
+    "net_gather_subset": [
+        "interfaces",
+        "default"
+    ],
+    "net_hostname": "junos1.lab.example.com",
+    "net_interfaces": {
+        ".local.": {
+            "admin-status": "up",
+            "macaddress": "Unspecified",
+            "mtu": "Unlimited",
+            "oper-status": "up",
+            "speed": "Unlimited",
+            "type": "Loopback"
+        },
+        "cbp0": {
+            "admin-status": "up",
+            "macaddress": "2c:6b:f5:9f:6b:11",
+            "mtu": "9192",
+            "oper-status": "up",
+            "speed": "Unspecified",
+            "type": "Ethernet"
+        },
+        "demux0": {
+            "admin-status": "up",
+            "macaddress": "Unspecified",
+            "mtu": "9192",
+            "oper-status": "up",
+            "speed": "Unspecified",
+            "type": "Software-Pseudo"
+        },
+        "dsc": {
+            "admin-status": "up",
+            "macaddress": "Unspecified",
+            "mtu": "Unlimited",
+            "oper-status": "up",
+            "speed": "Unspecified",
+            "type": "Software-Pseudo"
+        },
+        "em1": {
+            "admin-status": "up",
+            "macaddress": "52:54:00:12:bd:fe",
+            "mtu": "1514",
+            "oper-status": "up",
+            "speed": "10Gbps",
+            "type": "Ethernet"
+        },
+        "esi": {
+            "admin-status": "up",
+            "macaddress": "Unspecified",
+            "mtu": "Unlimited",
+            "oper-status": "up",
+            "speed": "Unlimited",
+            "type": "Software-Pseudo"
+        },
+        "fti0": {
+            "admin-status": "up",
+            "macaddress": "Unspecified",
+            "mtu": "Unlimited",
+            "oper-status": "up",
+            "speed": "Unlimited",
+            "type": "FTI"
+        },
+        "fti1": {
+            "admin-status": "up",
+            "macaddress": "Unspecified",
+            "mtu": "Unlimited",
+            "oper-status": "up",
+            "speed": "Unlimited",
+            "type": "FTI"
+        },
+        "fti2": {
+            "admin-status": "up",
+            "macaddress": "Unspecified",
+            "mtu": "Unlimited",
+            "oper-status": "up",
+            "speed": "Unlimited",
+            "type": "FTI"
+        },
+        "fti3": {
+            "admin-status": "up",
+            "macaddress": "Unspecified",
+            "mtu": "Unlimited",
+            "oper-status": "up",
+            "speed": "Unlimited",
+            "type": "FTI"
+        },
+        "fti4": {
+            "admin-status": "up",
+            "macaddress": "Unspecified",
+            "mtu": "Unlimited",
+            "oper-status": "up",
+            "speed": "Unlimited",
+            "type": "FTI"
+        },
+        "fti5": {
+            "admin-status": "up",
+            "macaddress": "Unspecified",
+            "mtu": "Unlimited",
+            "oper-status": "up",
+            "speed": "Unlimited",
+            "type": "FTI"
+        },
+        "fti6": {
+            "admin-status": "up",
+            "macaddress": "Unspecified",
+            "mtu": "Unlimited",
+            "oper-status": "up",
+            "speed": "Unlimited",
+            "type": "FTI"
+        },
+        "fti7": {
+            "admin-status": "up",
+            "macaddress": "Unspecified",
+            "mtu": "Unlimited",
+            "oper-status": "up",
+            "speed": "Unlimited",
+            "type": "FTI"
+        },
+        "fxp0": {
+            "admin-status": "up",
+            "macaddress": "52:54:00:40:12:ed",
+            "mtu": "1514",
+            "oper-status": "up",
+            "speed": "10Gbps",
+            "type": "Ethernet"
+        },
+        "gre": {
+            "admin-status": "up",
+            "macaddress": null,
+            "mtu": "Unlimited",
+            "oper-status": "up",
+            "speed": "Unlimited",
+            "type": "GRE"
+        },
+        "ipip": {
+            "admin-status": "up",
+            "macaddress": null,
+            "mtu": "Unlimited",
+            "oper-status": "up",
+            "speed": "Unlimited",
+            "type": "IPIP"
+        },
+        "irb": {
+            "admin-status": "up",
+            "macaddress": "2c:6b:f5:9f:72:f0",
+            "mtu": "1514",
+            "oper-status": "up",
+            "speed": "Unspecified",
+            "type": "Ethernet"
+        },
+        "jsrv": {
+            "admin-status": "up",
+            "macaddress": "00:00:00:00:00:00",
+            "mtu": "1514",
+            "oper-status": "up",
+            "speed": "Unspecified",
+            "type": "Ethernet"
+        },
+        "lo0": {
+            "admin-status": "up",
+            "macaddress": "Unspecified",
+            "mtu": "Unlimited",
+            "oper-status": "up",
+            "speed": "Unspecified",
+            "type": "Loopback"
+        },
+        "lsi": {
+            "admin-status": "up",
+            "macaddress": "Unspecified",
+            "mtu": "Unlimited",
+            "oper-status": "up",
+            "speed": "Unlimited",
+            "type": "Software-Pseudo"
+        },
+        "mif": {
+            "admin-status": "up",
+            "macaddress": "Unspecified",
+            "mtu": "1440",
+            "oper-status": "up",
+            "speed": "Unspecified",
+            "type": "Software-Pseudo"
+        },
+        "mtun": {
+            "admin-status": "up",
+            "macaddress": null,
+            "mtu": "Unlimited",
+            "oper-status": "up",
+            "speed": "Unlimited",
+            "type": "Multicast-GRE"
+        },
+        "pimd": {
+            "admin-status": "up",
+            "macaddress": null,
+            "mtu": "Unlimited",
+            "oper-status": "up",
+            "speed": "Unlimited",
+            "type": "PIMD"
+        },
+        "pime": {
+            "admin-status": "up",
+            "macaddress": null,
+            "mtu": "Unlimited",
+            "oper-status": "up",
+            "speed": "Unlimited",
+            "type": "PIME"
+        },
+        "pip0": {
+            "admin-status": "up",
+            "macaddress": "2c:6b:f5:9f:72:b0",
+            "mtu": "9192",
+            "oper-status": "up",
+            "speed": "Unspecified",
+            "type": "Ethernet"
+        },
+        "pp0": {
+            "admin-status": "up",
+            "macaddress": "Unspecified",
+            "mtu": "1532",
+            "oper-status": "up",
+            "speed": "Unspecified",
+            "type": "PPPoE"
+        },
+        "rbeb": {
+            "admin-status": "up",
+            "macaddress": "Unspecified",
+            "mtu": "Unlimited",
+            "oper-status": "up",
+            "speed": "Unlimited",
+            "type": "Software-Pseudo"
+        },
+        "tap": {
+            "admin-status": "up",
+            "macaddress": "Unspecified",
+            "mtu": "Unlimited",
+            "oper-status": "up",
+            "speed": "Unlimited",
+            "type": "Software-Pseudo"
+        },
+        "vtep": {
+            "admin-status": "up",
+            "macaddress": "Unspecified",
+            "mtu": "Unlimited",
+            "oper-status": "up",
+            "speed": "Unlimited",
+            "type": "Software-Pseudo"
+        }
+    },
+    "net_model": "vmx",
+    "net_python_version": "3.9.13",
+    "net_serialnum": "VM646555B74D",
+    "net_system": "junos",
+    "net_version": "23.1R1.8",
+    "network_resources": {}
+}

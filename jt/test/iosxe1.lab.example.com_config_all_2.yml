@@ -1,8 +1,8 @@
 - Building configuration...
 - ''
-- 'Current configuration : 6102 bytes'
+- 'Current configuration : 6269 bytes'
 - '!'
-- '! Last configuration change at 00:34:52 UTC Sun Apr 21 2024 by student'
+- '! Last configuration change at 23:07:52 UTC Sat Apr 20 2024'
 - '!'
 - version 17.6
 - service timestamps debug datetime msec
@@ -159,6 +159,10 @@
 - '!'
 - '!'
 - '!'
+- snmp-server community rocommunity2n4g! RO
+- snmp-server community rwcommunityd7g$v RW
+- snmp-server location Raleigh, NC
+- snmp-server contact Network Engineering | neteng@company.com
 - '!'
 - '!'
 - control-plane

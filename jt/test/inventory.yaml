@@ -26,5 +26,4 @@ all:
     test:
       hosts:
         iosxe1.lab.example.com:
-        junos1.lab.example.com:
-   
+        arista1.lab.example.com:

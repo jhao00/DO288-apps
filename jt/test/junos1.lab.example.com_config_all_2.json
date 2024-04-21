@@ -3,8 +3,8 @@
     "net_config": {
         "configuration": {
             "@": {
-                "junos:changed-localtime": "2024-04-21 00:30:58 UTC",
-                "junos:changed-seconds": "1713659458",
+                "junos:changed-localtime": "2024-04-20 23:27:11 UTC",
+                "junos:changed-seconds": "1713655631",
                 "xmlns": "http://xml.juniper.net/xnm/1.1/xnm"
             },
             "interfaces": {
@@ -76,10 +76,23 @@
                     ]
                 }
             },
+            "snmp": {
+                "community": [
+                    {
+                        "authorization": "read-only",
+                        "name": "rocommunity2n4g!"
+                    },
+                    {
+                        "authorization": "read-write",
+                        "name": "rwcommunityd7g$v"
+                    }
+                ],
+                "contact": "Network Engineering | neteng@company.com",
+                "location": "Raleigh, NC"
+            },
             "system": {
                 "domain-search": [
-                    "lab.example.com",
-                    "example.com"
+                    "lab.example.com"
                 ],
                 "host-name": "junos1.lab.example.com",
                 "login": {

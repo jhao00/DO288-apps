@@ -1,20 +1,17 @@
 - name: Verify changes
   hosts: test
   gather_facts: no
-  become: no
-
-  vars:
-    what: "interfaces"
+  become: yes
 
   tasks:
-    - name: Gather subset ios
+    - name: configure dns on ios
       when: ansible_network_os == "cisco.ios.ios"
-      ansible.builtin.include_tasks: tasks/subset_ios.yml
+      ansible.builtin.include_tasks: tasks/dns_ios.yml
 
-    - name: Ensure netconf port is open
+    - name: configure dns on junos
       when: ansible_network_os == "junipernetworks.junos.junos"
       ansible.builtin.include_tasks: tasks/netconf_junos.yml
 
-    - name: Gather subset junos
+    - name: configure dns on junos
       when: ansible_network_os == "junipernetworks.junos.junos"
-      ansible.builtin.include_tasks: tasks/subset_junos.yml
+      ansible.builtin.include_tasks: tasks/dns_junos.yml

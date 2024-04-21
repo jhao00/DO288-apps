@@ -1,12 +1,12 @@
 - name: Verify changes
-  hosts: test
+  hosts: iosxe1.lab.example.com
   gather_facts: no
   become: no
 
   tasks:
     - name: Gather network_resources
       ansible.netcommon.network_resource:
-        name: snmp_server
+        name: interfaces
         state: gathered
       register: out
 

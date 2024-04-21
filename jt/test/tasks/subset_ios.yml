@@ -7,11 +7,12 @@
   vars:
     sep: "\n"
   debug:
-    var: ansible_facts['net_config'] | split(sep)
+    #    var: ansible_facts['net_config'] | split(sep)
+    var: ansible_facts
 
-- name: save facts to file
-  vars:
-    sep: "\n"
-  ansible.builtin.copy:
-    content: "{{ ansible_facts['net_config'] | split(sep) | to_nice_yaml }}"
-    dest: "{{ inventory_hostname }}_{{ what }}_all.yml"
+#- name: save facts to file
+#  vars:
+#    sep: "\n"
+#  ansible.builtin.copy:
+#    content: "{{ ansible_facts['net_config'] | split(sep) | to_nice_yaml }}"
+#    dest: "{{ inventory_hostname }}_{{ what }}_all.yml"
