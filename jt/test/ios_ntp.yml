@@ -1,24 +1,47 @@
 - name: Verify changes
-  hosts: iosxe1.lab.example.com
-  # hosts: test
+  #hosts: iosxe1.lab.example.com
+  hosts: test
   gather_facts: no
   become: yes
 
   tasks:
-    - name: delete ntp config
-      ansible.builtin.include_tasks:
-        file: ntp/delete_ios.yml
+    - name: ios block
+      when: ansible_network_os == "cisco.ios.ios"
+      block:
+      - name: delete ntp config
+        ansible.builtin.include_tasks:
+          file: ntp/delete_ios.yml
+  
+      - name: update ntp config
+        ansible.builtin.include_tasks:
+          file: ntp/update_config.yml
+  
+      - name: verify
+        ansible.builtin.include_tasks:
+          file: ntp/config_ios.yml
 
-    - name: update ntp config
-      ansible.builtin.include_tasks:
-        file: ntp/update_config.yml
-
-    - name: verify
-      ansible.builtin.include_tasks:
-        file: ntp/config_ios.yml
+    - name: eos block
+      when: ansible_network_os == "arista.eos.eos"
+      block:
+      - name: delete ntp config
+        ansible.builtin.include_tasks:
+          file: ntp/delete_eos.yml
+  
+      - name: update ntp config
+        ansible.builtin.include_tasks:
+          file: ntp/update_config_eos.yml
+  
+      - name: verify
+        ansible.builtin.include_tasks:
+          file: ntp/config_eos.yml
 
   handlers:
     - name: save config
+      when: ansible_network_os == "cisco.ios.ios"
       ansible.builtin.include_tasks:
         file: ntp/save.yml
 
+    - name: save config eos
+      when: ansible_network_os == "arista.eos.eos"
+      ansible.builtin.include_tasks:
+        file: ntp/save_eos.yml

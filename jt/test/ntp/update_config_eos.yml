@@ -1,0 +1,4 @@
+- name: update config
+  arista.eos.eos_config:
+    src: "{{ playbook_dir }}/templates/ntp.j2"
+  notify: save config eos

@@ -1,5 +1,5 @@
 - name: using netcommon
-  cisco.ios.ios_facts:
+  arista.eos.eos_facts:
     gather_subset:
       - config
 
@@ -10,7 +10,7 @@
   changed_when: false
 
 - name: cmd
-  cisco.ios.ios_command:
+  arista.eos.eos_command:
     commands:  
     - show running-config | section ntp
   register: cmd
