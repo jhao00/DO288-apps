@@ -1,0 +1,24 @@
+- name: Verify changes
+  hosts: iosxe1.lab.example.com
+  # hosts: test
+  gather_facts: no
+  become: yes
+
+  tasks:
+    - name: delete ntp config
+      ansible.builtin.include_tasks:
+        file: ntp/delete_ios.yml
+
+    - name: update ntp config
+      ansible.builtin.include_tasks:
+        file: ntp/update_config.yml
+
+    - name: verify
+      ansible.builtin.include_tasks:
+        file: ntp/config_ios.yml
+
+  handlers:
+    - name: save config
+      ansible.builtin.include_tasks:
+        file: ntp/save.yml
+

@@ -1,0 +1,9 @@
+ansible_connection: ansible.netcommon.network_cli
+ansible_network_os: arista.eos.eos
+changed: false
+failed: false
+gathered:
+    servers:
+    -   server: 172.25.250.220
+    -   server: 172.25.254.254
+resource_module_name: arista.eos.ntp_global

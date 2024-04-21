@@ -1,5 +1,7 @@
-- name: Gather subset ios
-  cisco.ios.ios_facts:
+- name: Gather subset eos
+  become: yes
+  become_method: enable
+  arista.eos.eos_facts:
     gather_subset:
       - "{{ what }}"
 
@@ -7,7 +9,7 @@
   vars:
     sep: "\n"
   debug:
-    var: ansible_facts['net_config'] | regex_findall('log.*$', multiline=true)
+    var: ansible_facts['net_config'] | regex_findall('^ip .*$', multiline=true)
       #var: ansible_facts
 
 #- name: save facts to file

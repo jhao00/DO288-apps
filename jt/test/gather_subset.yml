@@ -4,12 +4,17 @@
   become: no
 
   vars:
-    what: "interfaces"
+    what: "config"
+    ansible_vault_password_file: ios_pass
 
   tasks:
     - name: Gather subset ios
       when: ansible_network_os == "cisco.ios.ios"
       ansible.builtin.include_tasks: tasks/subset_ios.yml
+
+    - name: Gather subset eos
+      when: ansible_network_os == "arista.eos.eos"
+      ansible.builtin.include_tasks: tasks/subset_eos.yml
 
     - name: Ensure netconf port is open
       when: ansible_network_os == "junipernetworks.junos.junos"
