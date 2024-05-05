@@ -1,3 +1,0 @@
-- name: save ntp config
-  cisco.ios.ios_config:
-    save_when: changed

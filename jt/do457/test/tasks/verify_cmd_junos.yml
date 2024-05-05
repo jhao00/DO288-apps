@@ -1,8 +1,0 @@
-- name: verify ios snmp
-  junipernetworks.junos.junos_command:
-    commands: "{{ action }}"
-  register: out
-
-- name: debug
-  ansible.builtin.debug:
-    var: out

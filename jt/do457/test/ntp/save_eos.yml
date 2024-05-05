@@ -1,3 +1,0 @@
-- name: save ntp config
-  arista.eos.eos_config:
-    save_when: changed

@@ -1,8 +1,0 @@
--   enabled: true
-    name: GigabitEthernet1
--   description: Managed by Ansible
-    enabled: true
-    name: GigabitEthernet2
--   description: Managed by Ansible
-    enabled: true
-    name: Loopback0

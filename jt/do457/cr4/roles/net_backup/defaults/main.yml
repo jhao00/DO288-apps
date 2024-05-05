@@ -1,5 +1,0 @@
----
-# defaults file for net_backup
-backup_tmp: /tmp
-backup_store: /backups
-delegate_host: workstation.lab.example.com

@@ -1,9 +1,0 @@
-- name: using netcommon
-  ansible.netcommon.network_resource:
-    name: interfaces
-    state: gathered
-  register: out
-
-- name: debug
-  debug:
-    var: out

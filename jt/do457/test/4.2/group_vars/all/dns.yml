@@ -1,5 +1,0 @@
-domain_search:
-  - lab.example.com
-  - example.com
-name_servers:
-  - 172.25.250.220

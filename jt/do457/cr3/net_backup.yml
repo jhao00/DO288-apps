@@ -1,9 +1,0 @@
-- name: backup junos,ios configs
-  hosts: ios,junos
-  gather_facts: no
-  become: no
-
-  tasks:
-    - name: backup junos,ios configs
-      ansible.builtin.include_role:
-        name: net_backup

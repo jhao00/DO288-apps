@@ -1,5 +1,0 @@
-[student@workstation applications-kustomize]$ tree
-base
-overlays/
-├── development
-└── production

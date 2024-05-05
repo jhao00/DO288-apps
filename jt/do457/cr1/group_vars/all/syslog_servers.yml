@@ -1,6 +1,0 @@
----
-syslog_servers:
-  - name: syslog01
-    address: 192.168.10.10
-  - name: syslog02
-    address: 192.168.11.10

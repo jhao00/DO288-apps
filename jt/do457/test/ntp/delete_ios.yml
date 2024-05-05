@@ -1,3 +1,0 @@
-- name: delete ntp config
-  cisco.ios.ios_ntp_global:
-    state: deleted

@@ -1,8 +1,0 @@
-- name: Configure dns on ios
-  junipernetworks.junos.junos_system:
-     domain_search:
-          - lab.example.com
-          - example.com
-     name_servers:
-          - 172.25.250.220
-
